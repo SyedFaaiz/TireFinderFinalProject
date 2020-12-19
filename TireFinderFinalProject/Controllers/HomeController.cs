@@ -106,7 +106,7 @@ namespace TireFinderFinalProject.Controllers
 
         public IActionResult OrderForm()
         {
-            return View();
+            return View("OrderList");
         }
 
 
@@ -120,6 +120,30 @@ namespace TireFinderFinalProject.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult SaveCustomer(Order order)
+        {
+            if (!ModelState.IsValid)
+                return View("Homepage");
+
+            if (order.Id == null)
+                _ordersDb.Orders.Add(order);
+
+            else
+            {
+                var orderInDb = _ordersDb.Orders.Find(order.Id);
+                orderInDb.Quantity = order.Quantity;
+                orderInDb.Price = order.Price;
+    
+
+            }
+
+            _ordersDb.SaveChanges();
+            return RedirectToAction("OrderList");
+        }
+
+
 
     }
 }
