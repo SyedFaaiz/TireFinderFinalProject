@@ -10,10 +10,10 @@ namespace TireFinderFinalProject.Models
     {
 
         public DbSet<Order> Orders { get; set; }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
+        public DbSet<Order> Tires { get; set; }
 
-            optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=OrderDatabase;Integrated Security=True;");
+        public OrderDatabase(DbContextOptions<OrderDatabase> options) : base(options)
+        {
         }
     }
 }

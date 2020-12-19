@@ -33,7 +33,7 @@ namespace TireFinderFinalProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Order");
                 });
 #pragma warning restore 612, 618
         }

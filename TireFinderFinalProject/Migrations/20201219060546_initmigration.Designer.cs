@@ -9,8 +9,8 @@ using TireFinderFinalProject.Models;
 namespace TireFinderFinalProject.Migrations
 {
     [DbContext(typeof(OrderDatabase))]
-    [Migration("20201219033200_OrderDb")]
-    partial class OrderDb
+    [Migration("20201219060546_initmigration")]
+    partial class initmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,7 +35,7 @@ namespace TireFinderFinalProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Order");
                 });
 #pragma warning restore 612, 618
         }

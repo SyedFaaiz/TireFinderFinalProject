@@ -17,10 +17,10 @@ namespace TireFinderFinalProject.Controllers
 
         private OrderDatabase _ordersDb;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,OrderDatabase orderDatabase)
         {
             _logger = logger;
-            _ordersDb = new OrderDatabase();
+            _ordersDb = orderDatabase;
         }
 
         public IActionResult Index()
@@ -36,23 +36,15 @@ namespace TireFinderFinalProject.Controllers
         public IActionResult Login(User user)
         {
             if (!ModelState.IsValid)
-            {
                 return View();
-            }
 
             if (Repository.Users.Any(p => p.Email != user.Email) || Repository.Users.Any(p => p.Password != user.Password))
             {
                 saveUserInfo = (user.Name);
                 return View("Login");
             }
-
-            else
-            {
-
-                return RedirectToAction("Dashboard", user);
-            }
+            return RedirectToAction("Dashboard", user);
         }
-
 
         [HttpPost]
         public IActionResult HomePage(User user)
@@ -81,28 +73,19 @@ namespace TireFinderFinalProject.Controllers
         {
 
             if (user.Email == null || user.Password == null)
-            {
                 return RedirectToAction("Login");
-            }
+            
 
             if (Repository.Users.Any(p => p.Email != user.Email) || Repository.Users.Any(p => p.Password != user.Password))
-            {
                 return Content($"Hi {saveUserInfo}, your email and password don't match to the account you signed up for");
-            }
 
-            else
-            {
-                return View("Dashboard", user);
-            }
+            return View("Dashboard", user);
         }
-
 
         public IActionResult UserList()
         {
             return View(Repository.Users);
         }
-
-
 
         public IActionResult OrderForm()
         {
