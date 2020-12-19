@@ -1,0 +1,49 @@
+﻿@model IEnumerable<User>
+@{
+
+    Layout = null;
+    int num = 1;
+}
+
+
+<html>
+<head>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+</head>
+
+<body>
+
+    <p>Go back to <a asp-action="Dashboard">Dashboard</a>?</p>
+    <table class="table table-stipped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <th scope="row">@num</th>
+                    <td>@user.Name</td>
+                    <td>@user.Email</td>
+
+
+                </tr>
+
+                num++;
+            }
+        </tbody>
+    </table>
+
+
+
+</body>
+
+</html>
+
+

@@ -1,0 +1,21 @@
+﻿@model User
+@{
+    Layout = null;
+}
+
+
+<h2>Dashboard</h2>
+<html>
+
+
+<body>
+    <p>Welcome  @Model.Name! The email that currently exists with your account is @Model.Email</p>
+
+    <p>Would you like to see a <a asp-action="UserList">list of users</a>?</p>
+    <p>OR</p>
+
+    <p>Would you like to enter <a asp-action="OrderForm">Order Details</a>?</p> 
+
+</body>
+</html>
+

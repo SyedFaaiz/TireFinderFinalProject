@@ -1,0 +1,50 @@
+﻿@model User
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = null;
+}
+
+<h2>Login</h2>
+
+<html>
+<head>
+    <link rel="stylesheet" href="/lib.bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/css/site.css" />
+</head>
+
+<body class="container">
+    <p class="alert alert-primary">This is the Login</p>
+    <form asp-action="Login" method="post">
+
+        <div asp-validation-summary="All"></div>
+
+        <div class="form-group">
+            <label asp-for="Name">Enter Name:</label>
+            <input class="form-control" asp-for="Name" />
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="Email">Enter email:</label>
+            <input class="form-control" asp-for="Email" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Password">Enter password:</label>
+            <input class="form-control" asp-for="Password" />
+        </div>
+
+
+
+        <div class="form-group">
+            <label asp-for="PhoneNumber">Enter phone number:</label>
+            <input class="form-control" asp-for="PhoneNumber" />
+        </div>
+
+        <div class="text-center">
+            <button type="submit">Sign In</button>
+        </div>
+    </form>
+</body>
+</html>

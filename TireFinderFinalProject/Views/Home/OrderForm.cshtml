@@ -1,0 +1,41 @@
+﻿@model Order
+
+@{
+    ViewData["Title"] = "TireOrderForm";
+    Layout = null;
+}
+
+<h2>Login</h2>
+
+<html>
+<head>
+    <link rel="stylesheet" href="/lib.bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/css/site.css" />
+</head>
+
+<body class="container">
+    <p class="alert alert-primary">This is the Login</p>
+    <form asp-action="Login" method="post">
+
+        <div asp-validation-summary="All"></div>
+
+        <div class="form-group">
+            <label asp-for="Quantity">Enter the Quantity Order or Number of Orders:</label>
+            <input class="form-control" asp-for="Quantity" />
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="Price">Enter Price Amount:</label>
+            <input class="form-control" asp-for="Price" />
+        </div>
+
+
+
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" />
+        <p>Click <a asp-action="OrderList">here</a> to go to Order List</p>
+
+    </form>
+</body>
+</html>

@@ -1,0 +1,43 @@
+﻿@model User
+
+@{
+    Layout = null;
+}
+
+<html>
+<head>
+    <link rel="stylesheet" href="/lib.bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/css/site.css" />
+</head>
+
+<body class="container">
+    <p class="alert alert-primary">This is the Home Page</p>
+    <form asp-action="HomePage" method="post">
+
+        <div asp-validation-summary="All"></div>
+        <div class="form-group">
+            <label asp-for="Name">Enter Name:</label>
+            <input class="form-control" asp-for="Name" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Email">Enter email:</label>
+            <input class="form-control" asp-for="Email" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="PhoneNumber">Enter phone number:</label>
+            <input class="form-control" asp-for="PhoneNumber" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Password">Enter password:</label>
+            <input class="form-control" asp-for="Password" />
+        </div>
+
+        <div class="text-center">
+            <button type="submit">Login</button>
+        </div>
+    </form>
+</body>
+</html>

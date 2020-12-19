@@ -13,9 +13,14 @@ namespace TireFinderFinalProject.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+        private static string saveUserInfo;
+
+        private OrderDatabase _ordersDb;
+
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+            _ordersDb = new OrderDatabase();
         }
 
         public IActionResult Index()
@@ -28,10 +33,93 @@ namespace TireFinderFinalProject.Controllers
             return View();
         }
 
+        public IActionResult Login(User user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            if (Repository.Users.Any(p => p.Email != user.Email) || Repository.Users.Any(p => p.Password != user.Password))
+            {
+                saveUserInfo = (user.Name);
+                return View("Login");
+            }
+
+            else
+            {
+
+                return RedirectToAction("Dashboard", user);
+            }
+        }
+
+
+        [HttpPost]
+        public IActionResult HomePage(User user)
+        {
+            if (!ModelState.IsValid)
+                return View();
+
+            if (Repository.Users.Any(p => p.Email == user.Email))
+            {
+                //return Content("A user with this email address already exists. Do you want to login?");
+                return View("ErrorLogin");
+            }
+
+            Repository.AddUser(user);
+            return View("Login", user);
+        }
+
+
+        [HttpGet]
+        public IActionResult HomePage()
+        {
+            return View();
+        }
+
+        public IActionResult Dashboard(User user)
+        {
+
+            if (user.Email == null || user.Password == null)
+            {
+                return RedirectToAction("Login");
+            }
+
+            if (Repository.Users.Any(p => p.Email != user.Email) || Repository.Users.Any(p => p.Password != user.Password))
+            {
+                return Content($"Hi {saveUserInfo}, your email and password don't match to the account you signed up for");
+            }
+
+            else
+            {
+                return View("Dashboard", user);
+            }
+        }
+
+
+        public IActionResult UserList()
+        {
+            return View(Repository.Users);
+        }
+
+
+
+        public IActionResult OrderForm()
+        {
+            return View();
+        }
+
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult OrderList()
+        {
+            return View();
+        }
+
     }
 }
