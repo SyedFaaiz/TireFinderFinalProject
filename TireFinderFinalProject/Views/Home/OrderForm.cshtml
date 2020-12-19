@@ -15,7 +15,7 @@
 
 <body class="container">
     <p class="alert alert-primary">This is the Order Form</p>
-    <form asp-action="Login" method="post">
+    <form asp-action="SaveOrder" method="post">
 
         <div asp-validation-summary="All"></div>
 
@@ -31,13 +31,13 @@
         </div>
 
 
-
+        
           <input type="hidden" asp-for="Id" />
-      <input type="submit" /> 
+         <input type="submit" />  
         <!--
         <div class="text-center">
             <button type="submit">Order</button>
-        </div> -->
+        </div>-->
         <p>Click <a asp-action="OrderList">here</a> to go to Order List</p>
 
     </form>
