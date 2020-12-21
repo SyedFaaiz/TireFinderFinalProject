@@ -40,7 +40,7 @@ namespace TireFinderFinalProject.Controllers
                 return View();
             }
 
-            if (Repository.Users.Any(p => p.Email != user.Email) || Repository.Users.Any(p => p.Password != user.Password))
+            if (Repository.Users.Any(p => p.Email != user.Email))
             {
                 saveUserInfo = (user.Name);
                 return View("Login");
@@ -121,7 +121,7 @@ namespace TireFinderFinalProject.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpGet]
         public IActionResult SaveOrder(Order order)
         {
             //if (!ModelState.IsValid)
@@ -129,8 +129,7 @@ namespace TireFinderFinalProject.Controllers
 
             if(order.Id == 0)
             {
-                _ordersDb.Orders.Add(order);
-                
+                _ordersDb.Orders.Add(order);  
             }
 
             else
@@ -144,6 +143,32 @@ namespace TireFinderFinalProject.Controllers
             // return View("OrderList");
             //var myOrder = _ordersDb.Orders.OrderBy(s => s.Id).FirstOrDefault();
             return View(allOrders);
+        }
+        [Route("home/orders/delete/{id}")]
+        public IActionResult Delete(int Id)
+        {
+            var orderToBeDeleted = _ordersDb.Orders.Find(Id);
+
+            if (orderToBeDeleted == null)
+                return NotFound();
+
+            _ordersDb.Orders.Remove(orderToBeDeleted);
+            _ordersDb.SaveChanges();
+
+            return RedirectToAction("SaveOrder");
+            //return RedirectToAction("Home", "SaveOrder", orderToBeDeleted);
+        }
+
+
+        [Route("home/orders/edit/{id}")]
+        public IActionResult Edit(int Id)
+        {
+            var orderToBeEdited = _ordersDb.Orders.Find(Id);
+
+            if (orderToBeEdited == null)
+                return NotFound();
+
+            return View("OrderForm", orderToBeEdited);
         }
 
 

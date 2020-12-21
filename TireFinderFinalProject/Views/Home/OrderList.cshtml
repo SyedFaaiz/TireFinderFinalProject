@@ -19,7 +19,8 @@
                 <th scope="col">#</th>
                 <th scope="col">Quantity</th>
                 <th scope="col">Price</th>
-                <th scope="col">Actions</th> 
+                <th scope="col">Actions</th>
+                <th scope="col">Action1s</th>
 
             </tr>
         </thead>
@@ -31,7 +32,8 @@
                     <th scope="row">@num</th>
                     <td>@order.Quantity</td>
                     <td>@order.Price</td>
-                    <td><a href="/home/orders/edit/order.Id"> Edit</a> | <a href="/home/orders/delete/order.Id">Delete</a></td>
+                    <td>@Html.ActionLink("Edit1","Edit","Home",new  {orderid= order.Id   })</td>
+                    <td><a href="/home/orders/edit/@order.Id" onclick="Edit(@order.Id)"> Edit</a> | <a href="/home/orders/delete/order.Id">Delete</a></td>
                 </tr>
 
                 num++;

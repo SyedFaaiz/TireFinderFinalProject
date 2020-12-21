@@ -10,16 +10,16 @@ namespace TireFinderFinalProject.Models
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Please enter Name")]
         public string Name { get; set; }
 
+        [EmailAddress]
         [Required(ErrorMessage = "Please enter Email")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Please enter Password")]
         public string Password { get; set; }
 
-        [Required(ErrorMessage = "Please enter Phone Number")]
+      
         public string PhoneNumber { get; set; }
 
     
