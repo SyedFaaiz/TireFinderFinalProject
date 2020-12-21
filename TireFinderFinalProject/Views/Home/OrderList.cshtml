@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Order>
+﻿@model IEnumerable<TireFinderFinalProject.Models.Order>
 @{
 
     Layout = null;
@@ -7,8 +7,8 @@
 
 
 <html>
-<head>
-    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+<head>    
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -19,7 +19,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Quantity</th>
                 <th scope="col">Price</th>
-            <!--    <th scope="col">Actions</th> -->
+                <th scope="col">Actions</th> 
 
             </tr>
         </thead>
@@ -31,9 +31,7 @@
                     <th scope="row">@num</th>
                     <td>@order.Quantity</td>
                     <td>@order.Price</td>
-            <!--        <td><a href="/home/customers/edit/customer.Id"> Edit</a> | <a href="/home/customers/delete/customer.Id">Delete</a></td> -->
-
-
+                    <td><a href="/home/orders/edit/order.Id"> Edit</a> | <a href="/home/orders/delete/order.Id">Delete</a></td>
                 </tr>
 
                 num++;

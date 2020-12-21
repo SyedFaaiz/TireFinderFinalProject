@@ -1,0 +1,43 @@
+﻿@model IEnumerable<TireFinderFinalProject.Models.Order>
+    @{
+
+        Layout = null;
+        int num = 1;
+    }
+
+
+   
+    <head>
+        <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />        
+    </head>
+
+ 
+
+        <table class="table table-stipped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    <!--    <th scope="col">Actions</th> -->
+
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var order in Model)
+                {
+                    <tr>
+                        <th scope="row">@num</th>
+                        <td>@order.Quantity</td>
+                        <td>@order.Price</td>
+                        <!--        <td><a href="/home/customers/edit/customer.Id"> Edit</a> | <a href="/home/customers/delete/customer.Id">Delete</a></td> -->
+
+
+                    </tr>
+
+                    num++;
+                }
+            </tbody>
+        </table>
+

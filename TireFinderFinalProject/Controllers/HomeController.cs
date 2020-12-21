@@ -124,8 +124,8 @@ namespace TireFinderFinalProject.Controllers
         [HttpPost]
         public IActionResult SaveOrder(Order order)
         {
-            if (!ModelState.IsValid)
-                return View("Homepage");
+            //if (!ModelState.IsValid)
+              //  return View("Homepage");
 
             if(order.Id == 0)
             {
@@ -139,10 +139,11 @@ namespace TireFinderFinalProject.Controllers
                 orderInDb.Quantity = order.Quantity;
                 orderInDb.Price = order.Price;
             }
-
-
             _ordersDb.SaveChanges();
-            return View("OrderList");
+            var allOrders = _ordersDb.Orders.ToList();
+            // return View("OrderList");
+            //var myOrder = _ordersDb.Orders.OrderBy(s => s.Id).FirstOrDefault();
+            return View(allOrders);
         }
 
 
